@@ -7,14 +7,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def initialize(cli_options):
+def initialize(cli_options: dict):
     leetcode_session = cli_options.get("leetcode_session") or os.getenv(
         "LEETCODE_SESSION"
     )
     if not leetcode_session:
-        raise ValueError(
-            "❌ Missing LEETCODE_SESSION. Provide it via CLI or as an environment variable."
-        )
+        log("Using unauthenticated session", LogLevel.WARN)
+        return
 
     os.environ["LEETCODE_SESSION"] = leetcode_session
-    log("LeetCode session initialized successfully.", LogLevel.DEBUG)
+    log("Using authenticated session", LogLevel.DEBUG)
