@@ -209,7 +209,7 @@ class StudyPlanMode(PracticeMode):
             log(f"Failed to fetch random problem: {str(e)}", LogLevel.ERROR)
 
 
-class PracticeModeFactory:
+class PracticeModeHandler:
     @staticmethod
     def get_mode(selection_mode: str) -> PracticeMode:
         if selection_mode == "random":

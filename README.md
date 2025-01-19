@@ -71,6 +71,7 @@ Selected 📅 Daily Challenge Mode
 🏷️ Tags: Array, Breadth-First Search, Heap (Priority Queue), Matrix
 📈 Acceptance Rate: 55.04%
 ...
+⏳ You have 45 min minutes to solve the problem. Good luck!
 ```
 
 ### Random Problem Mode
@@ -96,6 +97,7 @@ Selected 🎲 Random Problem Mode
 🏷️ Tags: Database
 📈 Acceptance Rate: 61.29%
 ...
+⏳ You have 45 min minutes to solve the problem. Good luck!
 ```
 
 ### Custom Mode
@@ -120,6 +122,7 @@ Selected 🧩 Custom Practice Mode
 🏷️ Tags: Array, Hash Table
 📈 Acceptance Rate: 54.67%
 ...
+⏳ You have 45 min minutes to solve the problem. Good luck!
 ```
 
 ### Study Plan Mode
@@ -144,6 +147,7 @@ Selected 🎯 Study Plan Mode: top-interview-150
 🏷️ Tags: Array, Matrix, Simulation
 📈 Acceptance Rate: 70.65%
 ...
+⏳ You have 45 min minutes to solve the problem. Good luck!
 ```
 
 ## Configurations
