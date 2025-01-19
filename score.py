@@ -8,6 +8,7 @@ default_problem_count = {"easy": 0, "medium": 0, "hard": 0}
 score = 0
 streak = 0
 
+
 def load_problem_count():
     try:
         if not os.path.exists(problem_count_file_path):
@@ -20,6 +21,7 @@ def load_problem_count():
     except Exception as e:
         log(f"Failed to load problem count: {str(e)}", LogLevel.ERROR)
         return default_problem_count
+
 
 def update_problem_count(difficulty, count):
     try:
@@ -42,6 +44,7 @@ def update_problem_count(difficulty, count):
     except Exception as e:
         log(f"Failed to update problem count: {str(e)}", LogLevel.ERROR)
 
+
 def update_score(difficulty, completed_in_time):
     global score, streak
     base_points = {"easy": 10, "medium": 20, "hard": 30}
@@ -56,7 +59,10 @@ def update_score(difficulty, completed_in_time):
         current_count = problem_count[difficulty]
 
         if current_count <= 0:
-            log(f"No more problems available for difficulty '{difficulty}'.", LogLevel.WARN)
+            log(
+                f"No more problems available for difficulty '{difficulty}'.",
+                LogLevel.WARN,
+            )
             return
 
         rarity_factor = 50 / current_count if current_count else 1
@@ -68,6 +74,12 @@ def update_score(difficulty, completed_in_time):
 
         update_problem_count(difficulty, current_count - 1)
 
-        log(f"🏆 Score: {score}, 🔥 Streak: {streak} (+{points} points), ✨ Difficulty: {difficulty}", LogLevel.INFO)
+        log(
+            f"🏆 Score: {score}, 🔥 Streak: {streak} (+{points} points), ✨ Difficulty: {difficulty}",
+            LogLevel.INFO,
+        )
     except Exception as e:
-        log(f"Error updating score for difficulty '{difficulty}': {str(e)}", LogLevel.ERROR)
+        log(
+            f"Error updating score for difficulty '{difficulty}': {str(e)}",
+            LogLevel.ERROR,
+        )

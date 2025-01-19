@@ -1,5 +1,6 @@
 import platform
 
+
 def resolve_editor_command(editor: str, file_path: str) -> str:
     """
     Resolve the command to open a file in the specified editor.

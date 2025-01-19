@@ -1,7 +1,7 @@
 import os
 
 language_to_extension = {
-    "python3": "py",
+    "python": "py",
     "javascript": "js",
     "java": "java",
     "c++": "cpp",
@@ -13,6 +13,7 @@ language_to_extension = {
 }
 
 available_languages = list(language_to_extension.keys())
+
 
 def create_solution_file(problem_slug: str, language: str) -> str:
     """

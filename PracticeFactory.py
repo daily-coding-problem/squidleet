@@ -10,9 +10,11 @@ difficulty_map = {
     "hard": "Hard",
 }
 
+
 class PracticeMode:
     def handle(self, args):
         raise NotImplementedError("This method should be implemented by subclasses.")
+
 
 class RandomProblemMode(PracticeMode):
     def handle(self, args):
@@ -26,6 +28,7 @@ class RandomProblemMode(PracticeMode):
         # Open in browser if flag is set
         if args["open_in_browser"]:
             import webbrowser
+
             webbrowser.open(f"https://leetcode.com/problems/{problem['slug']}")
 
         handler = SolutionHandler(
@@ -37,12 +40,15 @@ class RandomProblemMode(PracticeMode):
         )
         handler.solve()
 
+
 class DailyChallengeMode(PracticeMode):
     def handle(self, args):
         try:
             daily_challenge = fetch_daily_challenge()
 
-            difficulty_label = difficulty_map[daily_challenge["question"]["difficulty"].lower()]
+            difficulty_label = difficulty_map[
+                daily_challenge["question"]["difficulty"].lower()
+            ]
 
             # Log daily challenge details
             log("🎯 Daily Coding Challenge:", LogLevel.INFO)
@@ -53,6 +59,7 @@ class DailyChallengeMode(PracticeMode):
 
             if args["open_in_browser"]:
                 import webbrowser
+
                 webbrowser.open(f"https://leetcode.com{daily_challenge['link']}")
 
             handler = SolutionHandler(
@@ -65,6 +72,7 @@ class DailyChallengeMode(PracticeMode):
             handler.solve()
         except Exception as e:
             log(f"Failed to fetch daily challenge: {str(e)}", LogLevel.ERROR)
+
 
 class CustomPracticeMode(PracticeMode):
     def handle(self, args):
@@ -85,6 +93,7 @@ class CustomPracticeMode(PracticeMode):
 
                 if args["open_in_browser"]:
                     import webbrowser
+
                     webbrowser.open(f"https://leetcode.com/problems/{problem['slug']}")
 
                 handler = SolutionHandler(
@@ -97,6 +106,7 @@ class CustomPracticeMode(PracticeMode):
                 handler.solve()
             except Exception as e:
                 log(f"Failed to process problem '{slug}': {str(e)}", LogLevel.ERROR)
+
 
 class PracticeModeFactory:
     @staticmethod

@@ -32,8 +32,12 @@ def setup_file_watcher(code_path, problem_slug, language, time_limit):
                 log(f"Submission failed: {e}", LogLevel.ERROR)
         time.sleep(1)
 
+
 def process_submission_result(result):
     if result.get("status", {}).get("message") == "Accepted":
-        log(f"🎉 Submission accepted! Runtime: {result['runtime']}, Memory: {result['memory']}", LogLevel.INFO)
+        log(
+            f"🎉 Submission accepted! Runtime: {result['runtime']}, Memory: {result['memory']}",
+            LogLevel.INFO,
+        )
     else:
         log(f"Submission failed. Status: {result.get('status_msg')}", LogLevel.ERROR)

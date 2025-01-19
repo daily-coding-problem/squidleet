@@ -2,6 +2,7 @@ import os
 import requests
 from typing import Dict, Any
 
+
 def fetch_daily_challenge() -> Dict[str, Any]:
     """
     Fetch details for the LeetCode Daily Coding Challenge.
@@ -44,7 +45,11 @@ def fetch_daily_challenge() -> Dict[str, Any]:
         "Content-Type": "application/json",
         "Cookie": f"LEETCODE_SESSION={leetcode_session}",
     }
-    response = requests.post(url, headers=headers, json={"operationName": "questionOfToday", "variables": {}, "query": query})
+    response = requests.post(
+        url,
+        headers=headers,
+        json={"operationName": "questionOfToday", "variables": {}, "query": query},
+    )
 
     if not response.ok:
         raise Exception(f"❌ Failed to fetch daily challenge: {response.reason}")

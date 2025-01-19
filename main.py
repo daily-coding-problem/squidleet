@@ -21,5 +21,6 @@ def main():
         log(f"Error: {str(e)}", LogLevel.ERROR)
         exit(1)
 
+
 if __name__ == "__main__":
     main()

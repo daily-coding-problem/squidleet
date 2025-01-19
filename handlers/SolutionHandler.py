@@ -35,5 +35,8 @@ class SolutionHandler:
 
     def _setup_watcher(self, file_path, language, time_limit):
         setup_file_watcher(file_path, self.problem, language, time_limit)
-        log(f"⏳ You have {time_limit} minutes to solve the problem. Good luck!", LogLevel.INFO)
+        log(
+            f"⏳ You have {time_limit} minutes to solve the problem. Good luck!",
+            LogLevel.INFO,
+        )
         log(f"✨ Difficulty Level: {self.difficulty}", LogLevel.INFO)

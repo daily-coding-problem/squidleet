@@ -1,9 +1,11 @@
 import datetime
 
+
 class LogLevel:
     INFO = "INFO"
     WARN = "WARN"
     ERROR = "ERROR"
+
 
 def log(message: str, level: str = LogLevel.INFO):
     timestamp = datetime.datetime.now().isoformat()

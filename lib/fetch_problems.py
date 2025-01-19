@@ -8,7 +8,10 @@ from typing import List, Dict, Any, Optional
 # TODO: Need to verify how `fetchProblems` functions with multiple difficulty levels.
 # TODO: Need to add tests to tests/.
 
-def fetch_problems(limit: int = 50, skip: int = 0, difficulties: List[str] = None) -> List[Dict[str, Any]]:
+
+def fetch_problems(
+    limit: int = 50, skip: int = 0, difficulties: List[str] = None
+) -> List[Dict[str, Any]]:
     """
     Fetch a list of problems from LeetCode.
     :param limit: Number of problems to fetch.
@@ -59,7 +62,15 @@ def fetch_problems(limit: int = 50, skip: int = 0, difficulties: List[str] = Non
         "skip": skip,
         "filters": {"difficulty": difficulties or []},
     }
-    response = requests.post(url, headers=headers, json={"operationName": "problemsetQuestionList", "variables": variables, "query": query})
+    response = requests.post(
+        url,
+        headers=headers,
+        json={
+            "operationName": "problemsetQuestionList",
+            "variables": variables,
+            "query": query,
+        },
+    )
 
     if not response.ok:
         raise Exception(f"❌ Failed to fetch problems: {response.reason}")
@@ -72,7 +83,10 @@ def fetch_problems(limit: int = 50, skip: int = 0, difficulties: List[str] = Non
 
     return questions
 
-def get_random_problem(difficulties: Optional[List[str]] = None) -> Optional[Dict[str, Any]]:
+
+def get_random_problem(
+    difficulties: Optional[List[str]] = None,
+) -> Optional[Dict[str, Any]]:
     """
     Get a random problem from LeetCode.
     :param difficulties: Difficulty levels of the problems (e.g., "Easy", "Medium", "Hard").

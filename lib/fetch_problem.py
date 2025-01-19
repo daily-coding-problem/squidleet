@@ -2,6 +2,7 @@ import os
 import requests
 from typing import Dict, Any
 
+
 def fetch_problem(problem_slug: str) -> Dict[str, Any]:
     """
     Fetch problem details from LeetCode.
@@ -37,7 +38,11 @@ def fetch_problem(problem_slug: str) -> Dict[str, Any]:
     response = requests.post(
         url,
         headers=headers,
-        json={"operationName": "getQuestionDetails", "variables": {"titleSlug": problem_slug}, "query": query},
+        json={
+            "operationName": "getQuestionDetails",
+            "variables": {"titleSlug": problem_slug},
+            "query": query,
+        },
     )
 
     if not response.ok:
