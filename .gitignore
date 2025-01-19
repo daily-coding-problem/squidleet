@@ -1,0 +1,15 @@
+# Project files
+solutions
+
+# PyCharm
+.idea
+
+# Environment
+.env
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+.venv
+dist/
