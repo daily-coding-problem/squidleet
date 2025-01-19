@@ -169,10 +169,10 @@ class CustomPracticeMode(PracticeMode):
 class StudyPlanMode(PracticeMode):
     def handle(self, args):
         try:
-            log(f"Selected 🎯 Study Plan Mode: {args['study_plan']}", LogLevel.INFO)
+            log(f"Selected 🎯 Study Plan Mode: {args['plan_name']}", LogLevel.INFO)
 
             # Use the LeetCodeAPI's fetch_problems method
-            problem = self.get_random_study_plan_problem(args["study_plan"])
+            problem = self.get_random_study_plan_problem(args["plan_name"])
 
             if not problem:
                 log("No problems found for the selected study plan.", LogLevel.ERROR)

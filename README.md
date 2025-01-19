@@ -71,7 +71,6 @@ Optional arguments:
 - `--difficulty`: Choose between `easy`, `medium`, or `hard` or select multiple using comma-separated list (e.g., `easy,medium`).
 - `--open-in-browser`: Opens the problem in a browser window.
 - `--editor`: Specify a code editor for writing solutions. Supported editors: `default`, `vim`, `nano`, etc.
-- `--editor`: Open the code editor to write solutions. (e.g., `--editor code` or `--editor vim`)
 
 ### Custom Mode
 
@@ -81,10 +80,21 @@ Custom Modes enable solving specific problems or sets of problems by providing o
 python3 main.py --mode custom --problems two-sum
 ```
 
+Optional arguments:
 - `--open-in-browser`: Opens the problem in a browser window.
 - `--editor`: Specify the preferred code editor (e.g., `vim`, `nano`). Default is the system-configured default editor.
+
+### Study Plan Mode
+
+Study Plan Mode allows you to fetch random problems based on a specific study plan. You can specify the study plan name to fetch problems from that plan.
+
+```bash
+python3 main.py --mode study-plan --plan-name top-interview-150
+```
+
+Optional arguments:
 - `--open-in-browser`: Opens the problem in a browser window.
-- `--editor`: Open the code editor to write solutions. (e.g., `--editor code` or `--editor vim`)
+- `--editor`: Specify the preferred code editor (e.g., `vim`, `nano`). Default is the system-configured default editor.
 
 ## Configurations
 Squidleet uses a `LEETCODE_SESSION` cookie for authentication. Setting the `LEETCODE_SESSION` environment variable is necessary for all operations, including fetching and submitting problems.

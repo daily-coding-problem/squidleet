@@ -14,7 +14,7 @@ def collect(cli_options):
         problems = cli_options.get("problems", "").split(",")
 
     log_level = cli_options.get("log_level", "INFO")
-    study_plan = cli_options.get("study_plan", "top-interview-150")
+    plan_name = cli_options.get("study_plan", "top-interview-150")
     language = cli_options.get("language", "python")
     time_limit = cli_options.get("time_limit", 45)
     editor = cli_options.get("editor", "default")
@@ -23,7 +23,7 @@ def collect(cli_options):
     inputs = {
         "practice_mode": practice_mode,
         "difficulties": difficulties,
-        "study_plan": study_plan,
+        "plan_name": plan_name,
         "problems": problems,
         "language": language,
         "time_limit": time_limit,
@@ -47,8 +47,8 @@ def _validate(inputs):
     if inputs["practice_mode"] == "custom" and not inputs.get("problems"):
         raise ValueError("At least one problem is required for Custom Practice mode.")
 
-    if inputs["practice_mode"] == "study-plan" and not inputs.get("study_plan"):
-        raise ValueError("Study plan slug is required for Study Plan mode.")
+    if inputs["practice_mode"] == "study-plan" and not inputs.get("plan_name"):
+        raise ValueError("Study plan name is required for Study Plan mode.")
 
     if inputs["difficulties"] and any(
         difficulty not in ["easy", "medium", "hard"]
