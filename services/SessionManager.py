@@ -17,4 +17,4 @@ def initialize(cli_options):
         )
 
     os.environ["LEETCODE_SESSION"] = leetcode_session
-    log("LeetCode session initialized successfully.", LogLevel.INFO)
+    log("LeetCode session initialized successfully.", LogLevel.DEBUG)

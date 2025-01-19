@@ -8,19 +8,24 @@ def parse():
         "--practice-mode",
         type=str,
         choices=["custom", "random", "study-plan", "daily"],
-        default="random",
         help="Practice mode",
+        default="study-plan",
     )
     parser.add_argument(
         "--difficulties",
         type=str,
         help="Comma-separated difficulty levels (easy, medium, hard)",
-        default="easy,medium,hard",
     )
     parser.add_argument(
         "--problems",
         type=str,
         help="Comma-separated problem slugs (e.g., 'two-sum,fizz-buzz')",
+    )
+    parser.add_argument(
+        "--study-plan",
+        type=str,
+        help="Study plan slug (e.g., 'top-interview-150' or 'leetcode-75')",
+        default="top-interview-150",
     )
     parser.add_argument(
         "--language", type=str, help="Programming language to use", default="python"
