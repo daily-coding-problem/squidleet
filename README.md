@@ -5,7 +5,7 @@
 ![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white)
 ![LeetCode](https://img.shields.io/badge/-LeetCode-FF4B00?style=flat-square&logo=leetcode&logoColor=white)
 
-![squidleet](https://socialify.git.ci/daily-coding-problem/squidleet/image?description=1&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Dark)
+![squidleet](https://socialify.git.ci/daily-coding-problem/squidleet/image?description=1&forks=1&issues=1&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Dark)
 
 Squidleet is a command-line LeetCode practice game that allows you to solve LeetCode problems in your terminal. It uses the LeetCode API to fetch problems and submit solutions. You can practice solving problems in your terminal without having to switch between the browser and the terminal.
 
