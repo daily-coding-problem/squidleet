@@ -182,6 +182,56 @@ These can also be set via arguments in the CLI:
 python3 main.py --mode daily --log-level INFO --show-detailed-logs
 ```
 
+## 🐳 Docker
+
+You can run Squidleet using Docker. Below are the steps to set up and run the application using Docker.
+
+### Build Docker Image
+
+Clone the repository and navigate to the project directory:
+```bash
+git clone https://github.com/daily-coding-problem/squidleet.git
+cd squidleet
+```
+
+Build the Docker image:
+```bash
+docker build -t squidleet .
+```
+
+### Run the Docker Container
+
+Run the Docker container and mount the directory where your environment file (`.env`) is located:
+```bash
+docker run --rm -it --env-file .env squidleet
+```
+
+To specify additional options (e.g., modes), append them to the run command:
+```bash
+docker run --rm -it --env-file .env squidleet --mode daily
+```
+
+### Using Docker Compose
+
+If you prefer using Docker Compose, you can create a `docker-compose.yml` file with the following content:
+
+```yaml
+version: "3.8"
+services:
+  squidleet:
+    build: .
+    environment:
+      - LEETCODE_SESSION=<your_session_cookie>
+    stdin_open: true
+    tty: true
+    command: ["--mode", "daily"]
+```
+
+To run the container:
+```bash
+docker-compose up
+```
+
 ## License
 
 Squidleet is open-sourced under the MIT License. See the `LICENSE` file for more details.

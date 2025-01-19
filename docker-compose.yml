@@ -1,0 +1,8 @@
+services:
+    squidleet:
+        build:
+            context: .
+        container_name: squidleet
+        image: squidleet:latest
+        env_file:
+            - .env
