@@ -12,6 +12,7 @@ Squidleet is a command-line LeetCode practice game that allows you to solve Leet
 ## Features
 
 - **Daily Challenge Integration**: Fetch and solve the LeetCode Daily Coding Challenge directly from the terminal.
+- **Study Plan Mode**: Fetch random problems based on a specific study plan.
 - **Random Problem Practice**: Get a randomly selected LeetCode problem to practice.
 - **Specific Problem Mode**: Solve a specific problem by providing its problem slug.
 - **Problem Fetching**: Added enhanced fetching capabilities, including filtering based on difficulty (e.g., `easy`, `medium`, `hard`) and more.
