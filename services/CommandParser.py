@@ -15,11 +15,13 @@ def parse():
         "--difficulties",
         type=str,
         help="Comma-separated difficulty levels (easy, medium, hard)",
+        default="easy,medium,hard",
     )
     parser.add_argument(
         "--problems",
         type=str,
         help="Comma-separated problem slugs (e.g., 'two-sum,fizz-buzz')",
+        default="two-sum",
     )
     parser.add_argument(
         "--plan-name",

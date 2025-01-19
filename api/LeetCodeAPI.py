@@ -23,14 +23,12 @@ class LeetCodeAPI:
 
     def fetch_problems(
         self,
-        category_slug: str = "all-code-essentials",
         limit: int = 50,
         skip: int = 0,
         difficulties: Optional[List[str]] = None,
     ) -> List[Dict[str, Any]]:
         """
         Fetch a list of problems from LeetCode.
-        :param category_slug: The category of problems to fetch.
         :param limit: Number of problems to fetch.
         :param skip: Offset for pagination.
         :param difficulties: List of difficulty levels (e.g., ["Easy", "Medium", "Hard"]).
@@ -74,7 +72,7 @@ class LeetCodeAPI:
 
             filters = {"difficulty": difficulty_enum.get(difficulty.lower())}
             variables = {
-                "categorySlug": category_slug,
+                "categorySlug": "all-code-essentials",
                 "limit": limit,
                 "skip": skip,
                 "filters": filters,
@@ -126,6 +124,7 @@ class LeetCodeAPI:
               titleSlug
               title
               translatedTitle
+              content
               acRate
               difficulty
               freqBar

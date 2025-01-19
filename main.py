@@ -7,10 +7,10 @@ def main():
         # Parse CLI options
         cli_options = CommandParser.parse()
 
+        log("Welcome to 🦑 SquidLeet!", LogLevel.INFO)
+
         # Validate and set the LeetCode session token
         SessionManager.initialize(cli_options)
-
-        log("Welcome to 🦑 SquidLeet!", LogLevel.INFO)
 
         # Collect & validate inputs and detect practice mode
         inputs = InputsCollector.collect(cli_options)

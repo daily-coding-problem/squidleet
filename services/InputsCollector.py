@@ -7,11 +7,15 @@ def collect(cli_options):
     problems = None
 
     if practice_mode == "random":
-        difficulties = cli_options.get(
-            "difficulties", ["easy", "medium", "hard"]
-        ).split(",")
+        difficulties = cli_options.get("difficulties", "easy,medium,hard")
+
+        if difficulties:
+            difficulties = difficulties.split(",")
     elif practice_mode == "custom":
-        problems = cli_options.get("problems", "").split(",")
+        problems = cli_options.get("problems", "")
+
+        if problems:
+            problems = problems.split(",")
 
     log_level = cli_options.get("log_level", "INFO")
     plan_name = cli_options.get("study_plan", "top-interview-150")

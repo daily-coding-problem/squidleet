@@ -12,8 +12,8 @@ def initialize(cli_options: dict):
         "LEETCODE_SESSION"
     )
     if not leetcode_session:
-        log("Using unauthenticated session", LogLevel.WARN)
+        log("🔓 Using unauthenticated session", LogLevel.WARN)
         return
 
     os.environ["LEETCODE_SESSION"] = leetcode_session
-    log("Using authenticated session", LogLevel.DEBUG)
+    log("🔐 Using authenticated session", LogLevel.INFO)

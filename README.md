@@ -59,10 +59,24 @@ Optional arguments:
 - `--open-in-browser`: Opens the challenge in a browser window.
 - `--editor`: Open the code editor to write solutions. Supported editors include `default`, `vim`, `nano`, and others. Example usage: `--editor vim`
 
+```text
+Welcome to 🦑 SquidLeet!
+🔐 Using authenticated session
+Selected 📅 Daily Challenge Mode
+🎯 Daily Coding Challenge:
+📅 Date: 2025-01-19
+🎯 Problem Selected: Trapping Rain Water II
+✨ Difficulty: Hard
+🔗 URL: https://leetcode.com/problems/trapping-rain-water-ii
+🏷️ Tags: Array, Breadth-First Search, Heap (Priority Queue), Matrix
+📈 Acceptance Rate: 55.04%
+...
+```
+
 ### Random Problem Mode
 
-Solve a randomly selected LeetCode problem based on difficulty.
-Random Practice Mode allows you to solve a randomly selected LeetCode problem. Enhanced difficulty classification includes options such as `easy`, `medium`, `hard`, or a combination (e.g., `--difficulty easy,medium`).
+Solve a randomly selected LeetCode problem based on difficulty. Random Practice Mode allows you to solve a randomly selected LeetCode problem. Enhanced difficulty classification includes options such as `easy`, `medium`, `hard`, or a combination (e.g., `--difficulty easy,medium`).
+
 ```bash
 python3 main.py --mode random --difficulty medium
 ```
@@ -71,6 +85,18 @@ Optional arguments:
 - `--difficulty`: Choose between `easy`, `medium`, or `hard` or select multiple using comma-separated list (e.g., `easy,medium`).
 - `--open-in-browser`: Opens the problem in a browser window.
 - `--editor`: Specify a code editor for writing solutions. Supported editors: `default`, `vim`, `nano`, etc.
+
+```text
+Welcome to 🦑 SquidLeet!
+🔐 Using authenticated session
+Selected 🎲 Random Problem Mode
+🎯 Problem Selected: Shortest Distance in a Plane
+✨ Difficulty: Medium
+🔗 URL: https://leetcode.com/problems/shortest-distance-in-a-plane
+🏷️ Tags: Database
+📈 Acceptance Rate: 61.29%
+...
+```
 
 ### Custom Mode
 
@@ -84,6 +110,18 @@ Optional arguments:
 - `--open-in-browser`: Opens the problem in a browser window.
 - `--editor`: Specify the preferred code editor (e.g., `vim`, `nano`). Default is the system-configured default editor.
 
+```text
+Welcome to 🦑 SquidLeet!
+🔐 Using authenticated session
+Selected 🧩 Custom Practice Mode
+🎯 Problem Selected: Two Sum
+✨ Difficulty: Easy
+🔗 URL: https://leetcode.com/problems/two-sum
+🏷️ Tags: Array, Hash Table
+📈 Acceptance Rate: 54.67%
+...
+```
+
 ### Study Plan Mode
 
 Study Plan Mode allows you to fetch random problems based on a specific study plan. You can specify the study plan name to fetch problems from that plan.
@@ -95,6 +133,18 @@ python3 main.py --mode study-plan --plan-name top-interview-150
 Optional arguments:
 - `--open-in-browser`: Opens the problem in a browser window.
 - `--editor`: Specify the preferred code editor (e.g., `vim`, `nano`). Default is the system-configured default editor.
+
+```text
+Welcome to 🦑 SquidLeet!
+🔐 Using authenticated session
+Selected 🎯 Study Plan Mode: top-interview-150
+🎯 Problem Selected: Game of Life
+✨ Difficulty: Medium
+🔗 URL: https://leetcode.com/problems/game-of-life
+🏷️ Tags: Array, Matrix, Simulation
+📈 Acceptance Rate: 70.65%
+...
+```
 
 ## Configurations
 Squidleet uses a `LEETCODE_SESSION` cookie for authentication. Setting the `LEETCODE_SESSION` environment variable is necessary for all operations, including fetching and submitting problems.
