@@ -2,7 +2,7 @@ import os
 import time
 
 from lib.submit_solution import submit_solution
-from timer import start_timer
+from utils.timer import start_timer
 from utils.logger import log, LogLevel
 
 
