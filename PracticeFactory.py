@@ -55,7 +55,9 @@ class DailyChallengeMode(PracticeMode):
             log(f"📅 Date: {daily_challenge['date']}", LogLevel.INFO)
             log(f"📖 Title: {daily_challenge['question']['title']}", LogLevel.INFO)
             log(f"✨ Difficulty: {difficulty_label}", LogLevel.INFO)
-            log(f"🔗 Link: https://leetcode.com{daily_challenge['link']}", LogLevel.INFO)
+            log(
+                f"🔗 Link: https://leetcode.com{daily_challenge['link']}", LogLevel.INFO
+            )
 
             if args["open_in_browser"]:
                 import webbrowser
