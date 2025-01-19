@@ -39,5 +39,18 @@ def parse():
     parser.add_argument(
         "--open-in-browser", action="store_true", help="Open the problem in a browser"
     )
+    parser.add_argument(
+        "--log-level",
+        type=str,
+        choices=["DEBUG", "INFO", "WARN", "ERROR"],
+        help="Log level",
+        default="INFO",
+    )
+    parser.add_argument(
+        "--show-detailed-logs",
+        action="store_true",
+        help="Show timestamp and log level in logs",
+        default=False,
+    )
 
     return vars(parser.parse_args())

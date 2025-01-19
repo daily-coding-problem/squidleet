@@ -87,9 +87,10 @@ python3 main.py --mode custom --problems two-sum
 
 ## Configurations
 Squidleet uses a `LEETCODE_SESSION` cookie for authentication. Setting the `LEETCODE_SESSION` environment variable is necessary for all operations, including fetching and submitting problems.
-Squidleet uses a `LEETCODE_SESSION` cookie for authentication. You will need to set the `LEETCODE_SESSION` value as an environment variable or pass it as an argument when running the script.
 
-### Extracting `LEETCODE_SESSION`  🍪 Cookie
+### `LEETCODE_SESSION` Cookie
+
+#### Extracting `LEETCODE_SESSION`  🍪 Cookie
 
 To obtain the `LEETCODE_SESSION` cookie, follow these steps:
 
@@ -102,6 +103,19 @@ Set the cookie value as an environment variable `.env`:
 
 ```bash
 LEETCODE_SESSION=<your_session_cookie>
+```
+
+### Logs
+
+Squidleet exposes two environment variables for logging:
+
+- `LOG_LEVEL`: Set the log level for the application. Default is `INFO`.
+- `SHOW_DETAILED_LOGS`: Enable detailed logs for debugging purposes. Default is `False`.
+
+These can also be set via arguments in the CLI:
+
+```bash
+python3 main.py --mode daily --log-level INFO --show-detailed-logs
 ```
 
 ## License

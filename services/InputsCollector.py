@@ -13,6 +13,7 @@ def collect(cli_options):
     elif practice_mode == "custom":
         problems = cli_options.get("problems", "").split(",")
 
+    log_level = cli_options.get("log_level", "INFO")
     study_plan = cli_options.get("study_plan", "top-interview-150")
     language = cli_options.get("language", "python")
     time_limit = cli_options.get("time_limit", 45)
@@ -28,6 +29,7 @@ def collect(cli_options):
         "time_limit": time_limit,
         "editor": editor,
         "open_in_browser": open_in_browser,
+        "log_level": log_level,
     }
 
     _validate(inputs)
@@ -65,3 +67,9 @@ def _validate(inputs):
     valid_editors = ["default", "code", "nvim", "nano", "vim"]
     if inputs["editor"] not in valid_editors:
         raise ValueError(f"Invalid editor. Use one of: {', '.join(valid_editors)}")
+
+    valid_log_levels = ["DEBUG", "INFO", "WARN", "ERROR"]
+    if inputs["log_level"] not in valid_log_levels:
+        raise ValueError(
+            f"Invalid log level. Use one of: {', '.join(valid_log_levels)}"
+        )

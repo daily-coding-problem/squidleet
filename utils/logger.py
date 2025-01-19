@@ -25,12 +25,11 @@ LOG_LEVEL_PRIORITY = {
 def log(message: str, level: str = LogLevel.INFO):
     # Get the configured logging level or default to INFO if not set
     configured_level = os.getenv("LOGGING_LEVEL", LogLevel.INFO)
-    show_log_details = os.getenv("SHOW_LOG_DETAILS", "False").lower() == "true"
+    show_detailed_logs = os.getenv("SHOW_DETAILED_LOGS", "False").lower() == "true"
 
     # Only log messages with a sufficient level
     if LOG_LEVEL_PRIORITY.get(level, 0) >= LOG_LEVEL_PRIORITY.get(configured_level, 0):
-        # Include timestamp/level details if SHOW_LOG_DETAILS is enabled
-        if show_log_details:
+        if show_detailed_logs:
             timestamp = datetime.datetime.now().isoformat()
             if level == LogLevel.DEBUG:
                 print(f"🐞 [{timestamp}] [{level}] {message}")
