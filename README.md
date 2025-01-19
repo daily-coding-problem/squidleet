@@ -1,7 +1,6 @@
 # 🦑 SquidLeet [![Format Check](https://github.com/daily-coding-problem/squidleet/actions/workflows/format-check.yml/badge.svg)](https://github.com/daily-coding-problem/squidleet/actions/workflows/format-check.yml)
 
 ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Pytest](https://img.shields.io/badge/-Pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
 ![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white)
 ![LeetCode](https://img.shields.io/badge/-LeetCode-FF4B00?style=flat-square&logo=leetcode&logoColor=white)
 
