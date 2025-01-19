@@ -26,7 +26,7 @@ Squidleet uses the LeetCode API to fetch problems and submit solutions. It provi
 
 1. Fetch problems based on criteria like difficulty or tags.
 2. Solve the **LeetCode Daily Challenge**.
-3. Solve **random problems** or specific problems via their unique problem slug.
+3. Solve **random problems** or specific problems via their unique problem slug or study plan.
 4. Write solutions with your preferred code editor and submit them directly from the terminal.
 5. Open problem links in your browser if preferred.
 
