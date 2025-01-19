@@ -51,3 +51,5 @@ zipp==3.19.2
 
 python-dotenv~=1.0.1
 html2text~=2024.2.26
+
+Markdown~=3.7

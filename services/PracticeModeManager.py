@@ -1,6 +1,6 @@
-from PracticeFactory import PracticeModeFactory
+from handlers.PracticeHandler import PracticeModeHandler
 
 
 def handle(inputs):
-    mode_handler = PracticeModeFactory.get_mode(inputs["practice_mode"])
+    mode_handler = PracticeModeHandler.get_mode(inputs["practice_mode"])
     mode_handler.handle(inputs)

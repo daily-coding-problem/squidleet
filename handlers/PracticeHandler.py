@@ -1,5 +1,6 @@
 import random
 import html2text
+import markdown
 
 from typing import List, Dict, Any, Optional
 
@@ -35,16 +36,19 @@ class PracticeMode:
         if ac_rate is not None:
             log(f"📈 Acceptance Rate: {ac_rate:.2f}%", LogLevel.INFO)
 
+        # Assuming `content` is the Markdown content
         content = problem.get("content")
         if content:
             try:
+                html_content = markdown.markdown(content)
+
                 text_maker = html2text.HTML2Text()
                 text_maker.ignore_links = True
-                plain_text = text_maker.handle(content)
-                log(f"📝 Problem Description:", LogLevel.INFO)
-                log(f"{plain_text}", LogLevel.INFO)
+                plain_text = text_maker.handle(html_content)
+
+                log(plain_text, LogLevel.INFO)
             except Exception as e:
-                log(f"⚠️ Failed to process problem description: {e}", LogLevel.WARN)
+                log(f"Failed to convert problem content: {str(e)}", LogLevel.ERROR)
 
     def open_in_browser(self, url, open_flag):
         if open_flag:
