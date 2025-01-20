@@ -1,8 +1,8 @@
-from typing import List, Dict, Any, Optional
+import os
 from concurrent.futures import ThreadPoolExecutor
+from typing import List, Dict, Any, Optional
 
 import requests
-import os
 
 
 class LeetCodeAPI:
@@ -53,6 +53,10 @@ class LeetCodeAPI:
               frontendQuestionId: questionFrontendId
               title
               titleSlug
+              codeSnippets {
+                lang
+                code
+              }
               topicTags {
                 name
                 id
@@ -134,6 +138,10 @@ class LeetCodeAPI:
               status
               hasVideoSolution
               hasSolution
+              codeSnippets {
+                lang
+                code
+              }
               topicTags {
                 name
                 id
@@ -168,19 +176,23 @@ class LeetCodeAPI:
         """
         query = """
         query getQuestionDetails($titleSlug: String!) {
-          question(titleSlug: $titleSlug) {
-            questionId
-            title
-            titleSlug
-            content
-            acRate
-            difficulty
-            topicTags {
-              name
-              id
-              slug
+            question(titleSlug: $titleSlug) {
+                questionId
+                title
+                titleSlug
+                content
+                acRate
+                difficulty
+                codeSnippets {
+                    lang
+                    code
+                }
+                topicTags {
+                    name
+                    id
+                    slug
+                }
             }
-          }
         }
         """
 

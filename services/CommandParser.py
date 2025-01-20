@@ -30,7 +30,7 @@ def parse():
         default="top-interview-150",
     )
     parser.add_argument(
-        "--language", type=str, help="Programming language to use", default="python"
+        "--language", type=str, help="Programming language to use", default="python3"
     )
     parser.add_argument(
         "--time-limit", type=int, help="Time limit for practice in minutes", default=45

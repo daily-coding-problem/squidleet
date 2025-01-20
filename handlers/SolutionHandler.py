@@ -16,8 +16,9 @@ def _open_in_editor(editor, file_path):
 
 
 class SolutionHandler:
-    def __init__(self, problem, difficulty, editor, language, time_limit):
+    def __init__(self, problem, code, difficulty, editor, language, time_limit):
         self.problem = problem
+        self.code = code
         self.difficulty = difficulty
         self.editor = editor
         self.language = language
@@ -29,7 +30,7 @@ class SolutionHandler:
         self._setup_watcher(code_path, self.language, self.time_limit)
 
     def _create_file(self, language):
-        code_path = create_solution_file(self.problem, language)
+        code_path = create_solution_file(self.problem, self.code, language)
         log(f"📂 Template created: {code_path}", LogLevel.INFO)
         return code_path
 

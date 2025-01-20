@@ -56,9 +56,22 @@ class PracticeMode:
 
             webbrowser.open(url)
 
-    def create_and_solve_handler(self, problem_slug, difficulty_label, args):
+    def create_and_solve_handler(self, problem_slug, code_snippets, difficulty_label, args):
+        # Determine the starter code based on the chosen language
+
+        code = ""
+        for item in code_snippets:
+            if item.get('lang').lower() == args["language"].lower():
+                code = item.get('code')
+                break
+
+        if not code:
+            log(f"Starter code not found for language: {args['language']}", LogLevel.ERROR)
+            return
+
         handler = SolutionHandler(
             problem=problem_slug,
+            code=code,
             difficulty=difficulty_label,
             editor=args["editor"],
             language=args["language"],
@@ -139,7 +152,7 @@ class RandomProblemMode(PracticeMode):
 
             self.log_problem_details(problem, difficulty_label, url)
             self.open_in_browser(url, args["open_in_browser"])
-            self.create_and_solve_handler(problem["titleSlug"], difficulty_label, args)
+            self.create_and_solve_handler(problem["titleSlug"], problem['codeSnippets'], difficulty_label, args)
         except Exception as e:
             log(f"Failed to fetch random problem: {str(e)}", LogLevel.ERROR)
 
@@ -161,7 +174,7 @@ class DailyChallengeMode(PracticeMode):
             self.log_problem_details(daily_challenge["question"], difficulty_label, url)
             self.open_in_browser(url, args["open_in_browser"])
             self.create_and_solve_handler(
-                daily_challenge["question"]["titleSlug"], difficulty_label, args
+                daily_challenge["question"]["titleSlug"], daily_challenge['codeSnippets'], difficulty_label, args
             )
         except Exception as e:
             log(f"Failed to fetch daily challenge: {str(e)}", LogLevel.ERROR)
@@ -184,7 +197,7 @@ class CustomPracticeMode(PracticeMode):
 
                 self.log_problem_details(problem, difficulty_label, url)
                 self.open_in_browser(url, args["open_in_browser"])
-                self.create_and_solve_handler(slug, difficulty_label, args)
+                self.create_and_solve_handler(slug, problem['codeSnippets'], difficulty_label, args)
             except Exception as e:
                 log(f"Failed to process problem '{slug}': {str(e)}", LogLevel.ERROR)
 
@@ -208,7 +221,7 @@ class StudyPlanMode(PracticeMode):
 
             self.log_problem_details(problem, difficulty_label, url)
             self.open_in_browser(url, args["open_in_browser"])
-            self.create_and_solve_handler(problem["titleSlug"], difficulty_label, args)
+            self.create_and_solve_handler(problem["titleSlug"], problem['codeSnippets'], difficulty_label, args)
         except Exception as e:
             log(f"Failed to fetch random problem: {str(e)}", LogLevel.ERROR)
 
