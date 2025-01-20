@@ -2,6 +2,7 @@ import os
 import time
 
 from api.LeetCodeAPI import LeetCodeAPI
+
 from utils.timer import start_timer
 from utils.logger import log, LogLevel
 

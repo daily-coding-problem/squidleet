@@ -50,7 +50,6 @@ class LeetCodeAPI:
               acRate
               difficulty
               content
-              frontendQuestionId: questionFrontendId
               title
               titleSlug
               codeSnippets {
@@ -127,17 +126,9 @@ class LeetCodeAPI:
             question {
               titleSlug
               title
-              translatedTitle
               content
               acRate
               difficulty
-              freqBar
-              frontendQuestionId: questionFrontendId
-              isFavor
-              paidOnly: isPaidOnly
-              status
-              hasVideoSolution
-              hasSolution
               codeSnippets {
                 lang
                 code
@@ -177,7 +168,6 @@ class LeetCodeAPI:
         query = """
         query getQuestionDetails($titleSlug: String!) {
             question(titleSlug: $titleSlug) {
-                questionId
                 title
                 titleSlug
                 content
@@ -227,52 +217,14 @@ class LeetCodeAPI:
           studyPlanV2Detail(planSlug: $slug) {
             slug
             name
-            highlight
-            staticCoverPicture
-            colorPalette
-            threeDimensionUrl
             description
-            premiumOnly
-            needShowTags
-            awardDescription
-            defaultLanguage
-            award {
-              name
-              config {
-                icon
-                iconGif
-                iconGifBackground
-              }
-            }
-            relatedStudyPlans {
-              cover
-              highlight
-              name
-              slug
-              premiumOnly
-            }
             planSubGroups {
               slug
               name
-              premiumOnly
               questionNum
               questions {
-                translatedTitle
-                titleSlug
                 title
-                questionFrontendId
-                paidOnly
-                id
-                difficulty
-                hasOfficialSolution
-                topicTags {
-                  slug
-                  name
-                }
-                solutionInfo {
-                  solutionSlug
-                  solutionTopicId
-                }
+                titleSlug
               }
             }
           }

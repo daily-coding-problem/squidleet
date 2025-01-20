@@ -5,8 +5,9 @@ import markdown
 from typing import List, Dict, Any, Optional
 
 from utils.logger import log, LogLevel
+
 from handlers.SolutionHandler import SolutionHandler
-from api.LeetCodeAPI import LeetCodeAPI
+from handlers.CacheHandler import cached_api
 
 difficulty_map = {
     "easy": "Easy",
@@ -17,7 +18,7 @@ difficulty_map = {
 
 class PracticeMode:
     def __init__(self):
-        self.leetcode_api = LeetCodeAPI()
+        pass
 
     def handle(self, args):
         raise NotImplementedError("This method should be implemented by subclasses.")
@@ -93,7 +94,7 @@ class PracticeMode:
         :param difficulties: Difficulty levels of the problems (e.g., "Easy", "Medium", "Hard").
         :return: A random problem dictionary or None if no problems are found.
         """
-        problems = self.leetcode_api.fetch_problems(
+        problems = cached_api.fetch_problems(
             limit=1000, difficulties=difficulties
         )
 
@@ -109,7 +110,7 @@ class PracticeMode:
         :param slug: The slug of the study plan (e.g., "leetcode-75").
         :return: A list of dictionaries, each containing details of a problem.
         """
-        study_plan = self.leetcode_api.get_study_plan(slug)
+        study_plan = cached_api.get_study_plan(slug)
 
         if not study_plan:
             raise Exception(f"❌ Study plan not found for slug: {slug}")
@@ -137,7 +138,10 @@ class PracticeMode:
             return None
 
         random_index = random.randint(0, len(problems) - 1)
-        return problems[random_index]
+        problem = problems[random_index]
+
+        # Get the problem in the right format
+        return cached_api.fetch_problem(problem["titleSlug"])
 
 
 class RandomProblemMode(PracticeMode):
@@ -170,7 +174,7 @@ class DailyChallengeMode(PracticeMode):
 
         try:
             # Use the LeetCodeAPI's fetch_daily_challenge method
-            daily_challenge = self.leetcode_api.fetch_daily_challenge()
+            daily_challenge = cached_api.fetch_daily_challenge()
             difficulty_label = difficulty_map[
                 daily_challenge["question"]["difficulty"].lower()
             ]
@@ -196,7 +200,7 @@ class CustomPracticeMode(PracticeMode):
 
         for slug in args["problems"]:
             try:
-                problem = self.leetcode_api.fetch_problem(slug.strip())
+                problem = cached_api.fetch_problem(slug.strip())
 
                 if not problem:
                     log(f"Problem with slug '{slug}' not found.", LogLevel.ERROR)
@@ -224,9 +228,6 @@ class StudyPlanMode(PracticeMode):
             if not problem:
                 log("No problems found for the selected study plan.", LogLevel.ERROR)
                 return
-
-            # Get the problem in the right format
-            problem = self.leetcode_api.fetch_problem(problem["titleSlug"])
 
             difficulty_label = difficulty_map[problem["difficulty"].lower()]
             url = f"https://leetcode.com/problems/{problem['titleSlug']}"
