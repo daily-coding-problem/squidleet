@@ -17,11 +17,17 @@ class CachedLeetCodeAPI:
         :param cache_expiry: Expiry time for cache in seconds (default: 1 hour).
         """
         # Use the system's temporary directory if no cache directory is provided
-        self.cache_dir = Path(cache_dir or tempfile.gettempdir()) / "cached_leetcode_api"
+        self.cache_dir = (
+            Path(cache_dir or tempfile.gettempdir()) / "cached_leetcode_api"
+        )
         self.cache_expiry = cache_expiry  # Expiry time in seconds
-        self.cache_dir.mkdir(parents=True, exist_ok=True)  # Create cache directory if it doesn't exist
+        self.cache_dir.mkdir(
+            parents=True, exist_ok=True
+        )  # Create cache directory if it doesn't exist
 
-        self.api = LeetCodeAPI()  # Delegate actual API calls to existing LeetCodeAPI class
+        self.api = (
+            LeetCodeAPI()
+        )  # Delegate actual API calls to existing LeetCodeAPI class
 
     def _get_cache_key(self, unique_id: str) -> str:
         """
@@ -29,7 +35,7 @@ class CachedLeetCodeAPI:
         :param unique_id: Unique identifier for the API request (e.g., slug, query, variable JSON).
         :return: Cache filename based on the MD5 hash of the unique ID.
         """
-        return hashlib.md5(unique_id.encode('utf-8')).hexdigest()
+        return hashlib.md5(unique_id.encode("utf-8")).hexdigest()
 
     def _read_from_cache(self, cache_key: str) -> Any:
         """
@@ -56,7 +62,9 @@ class CachedLeetCodeAPI:
         with open(cache_file, "w") as f:
             json.dump(data, f)
 
-    def _fetch_with_cache(self, fetch_func: Callable, unique_id: str, *args, **kwargs) -> Any:
+    def _fetch_with_cache(
+        self, fetch_func: Callable, unique_id: str, *args, **kwargs
+    ) -> Any:
         """
         Fetch data with caching.
         :param fetch_func: Function to fetch data if cache is not available.
@@ -87,24 +95,32 @@ class CachedLeetCodeAPI:
         Cached version of fetch_problems
         """
         unique_id = f"fetch_problems-{json.dumps([args, kwargs], sort_keys=True)}"  # Unique key based on args
-        return self._fetch_with_cache(self.api.fetch_problems, unique_id, *args, **kwargs)
+        return self._fetch_with_cache(
+            self.api.fetch_problems, unique_id, *args, **kwargs
+        )
 
     def fetch_daily_challenge(self, *args, **kwargs):
         """
         Cached version of fetch_daily_challenge
         """
-        return self._fetch_with_cache(self.api.fetch_daily_challenge, "fetch_daily_challenge")
+        return self._fetch_with_cache(
+            self.api.fetch_daily_challenge, "fetch_daily_challenge"
+        )
 
     def fetch_problem(self, problem_slug: str, *args, **kwargs):
         """
         Cached version of fetch_problem
         """
         unique_id = f"fetch_problem-{problem_slug}"
-        return self._fetch_with_cache(self.api.fetch_problem, unique_id, problem_slug, *args, **kwargs)
+        return self._fetch_with_cache(
+            self.api.fetch_problem, unique_id, problem_slug, *args, **kwargs
+        )
 
     def get_study_plan(self, slug: str, *args, **kwargs):
         """
         Cached version of get_study_plan
         """
         unique_id = f"get_study_plan-{slug}"
-        return self._fetch_with_cache(self.api.get_study_plan, unique_id, slug, *args, **kwargs)
+        return self._fetch_with_cache(
+            self.api.get_study_plan, unique_id, slug, *args, **kwargs
+        )

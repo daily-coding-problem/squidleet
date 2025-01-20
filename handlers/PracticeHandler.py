@@ -94,9 +94,7 @@ class PracticeMode:
         :param difficulties: Difficulty levels of the problems (e.g., "Easy", "Medium", "Hard").
         :return: A random problem dictionary or None if no problems are found.
         """
-        problems = cached_api.fetch_problems(
-            limit=1000, difficulties=difficulties
-        )
+        problems = cached_api.fetch_problems(limit=1000, difficulties=difficulties)
 
         if not problems:
             return None
