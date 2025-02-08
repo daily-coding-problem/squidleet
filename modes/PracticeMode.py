@@ -68,9 +68,7 @@ def get_random_study_plan_problem(slug: str) -> Optional[Dict[str, Any]]:
     return cached_api.fetch_problem(problem["titleSlug"])
 
 
-def create_and_solve_handler(
-    problem_slug, code_snippets, difficulty_label, args
-):
+def create_and_solve_handler(problem_slug, code_snippets, difficulty_label, args):
     # Determine the starter code based on the chosen language
 
     code = ""

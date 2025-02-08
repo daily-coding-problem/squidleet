@@ -1,5 +1,10 @@
-from modes.PracticeMode import PracticeMode, get_random_problem, log_problem_details, open_in_browser, \
-    create_and_solve_handler
+from modes.PracticeMode import (
+    PracticeMode,
+    get_random_problem,
+    log_problem_details,
+    open_in_browser,
+    create_and_solve_handler,
+)
 from utils.constants import difficulty_map
 from utils.logger import log, LogLevel
 
