@@ -54,7 +54,7 @@ Squidleet offers multiple modes and configuration options for practicing LeetCod
 Daily Challenge Mode allows you to fetch and solve the LeetCode Daily Challenge directly from the terminal.
 
 ```bash
-python3 main.py --mode daily
+python3 main.py --practice-mode daily
 ```
 
 Optional arguments:
@@ -81,7 +81,7 @@ Selected 📅 Daily Challenge Mode
 Solve a randomly selected LeetCode problem based on difficulty. Random Practice Mode allows you to solve a randomly selected LeetCode problem. Enhanced difficulty classification includes options such as `easy`, `medium`, `hard`, or a combination (e.g., `--difficulty easy,medium`).
 
 ```bash
-python3 main.py --mode random --difficulty medium
+python3 main.py --practice-mode random --difficulty medium
 ```
 
 Optional arguments:
@@ -107,7 +107,7 @@ Selected 🎲 Random Problem Mode
 Custom Modes enable solving specific problems or sets of problems by providing one or multiple problem slugs (e.g., `--problems two-sum,three-sum`).
 
 ```bash
-python3 main.py --mode custom --problems two-sum
+python3 main.py --practice-mode custom --problems two-sum
 ```
 
 Optional arguments:
@@ -132,7 +132,7 @@ Selected 🧩 Custom Practice Mode
 Study Plan Mode allows you to fetch random problems based on a specific study plan. You can specify the study plan name to fetch problems from that plan.
 
 ```bash
-python3 main.py --mode study-plan --plan-name top-interview-150
+python3 main.py --practice-mode study-plan --plan-name top-interview-150
 ```
 
 Optional arguments:
@@ -212,7 +212,7 @@ Squidleet exposes two environment variables for logging:
 These can also be set via arguments in the CLI:
 
 ```bash
-python3 main.py --mode daily --log-level INFO --show-detailed-logs
+python3 main.py --practice-mode daily --log-level INFO --show-detailed-logs
 ```
 
 ## 🐳 Docker
@@ -241,7 +241,7 @@ docker run --rm -it --env-file .env squidleet
 
 To specify additional options (e.g., modes), append them to the run command:
 ```bash
-docker run --rm -it --env-file .env squidleet --mode daily
+docker run --rm -it --env-file .env squidleet --practice-mode daily
 ```
 
 ### Using Docker Compose
@@ -257,7 +257,7 @@ services:
       - LEETCODE_SESSION=<your_session_cookie>
     stdin_open: true
     tty: true
-    command: ["--mode", "daily"]
+    command: ["--practice-mode", "daily"]
 ```
 
 To run the container:
