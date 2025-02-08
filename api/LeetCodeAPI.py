@@ -281,3 +281,196 @@ class LeetCodeAPI:
             raise Exception(f"❌ Failed to submit solution: {response.content}")
 
         return response.json()
+
+    def fetch_company_questions(
+        self,
+        favorite_slug: str,
+        skip: int = 0,
+        limit: int = 100,
+        frequency_filter: dict = None,
+        difficulty_filter: dict = None,
+        topic_filter: dict = None,
+        filter_combine_type: str = "ALL",
+        sort_by: dict = None,
+    ):
+        """
+        Fetch filtered and sorted questions for a specific company using the company's GraphQL slug.
+
+        :param favorite_slug: The slug for the company (e.g., 'amazon-thirty-days').
+        :param skip: Number of questions to skip in pagination (default is 0).
+        :param limit: Maximum number of questions to fetch (default is 100).
+        :param frequency_filter: A dictionary for frequency filters, e.g., {"rangeLeft": 90, "rangeRight": 100}.
+        :param difficulty_filter: A dictionary for difficulty filters, e.g.,
+                                  {"difficulties": ["MEDIUM"], "operator": "IS"}.
+                                  Operators include "IS" and "IS_NOT".
+        :param topic_filter: A dictionary for topic filters, e.g.,
+                             {"topicSlugs": ["dynamic-programming"], "operator": "IS_NOT"}.
+                             Operators include "IS" and "IS_NOT".
+        :param filter_combine_type: Filter combination type, either "ALL" or "ANY" (default is "ALL").
+        :param sort_by: A dictionary for sorting, e.g., {"sortField": "FREQUENCY", "sortOrder": "ASCENDING"}.
+        :return: Questions and metadata as returned by the API.
+        """
+
+        # Validate filter combine type
+        valid_combine_types = ["ALL", "ANY"]
+        if filter_combine_type not in valid_combine_types:
+            raise ValueError(
+                f"Invalid filterCombineType: {filter_combine_type}. Must be one of {valid_combine_types}."
+            )
+
+        # Validate sort_by
+        valid_sort_fields = ["FREQUENCY", "CUSTOM", "DIFFICULTY", "ACCEPTANCE", "TITLE"]
+        if sort_by is not None:
+            if sort_by.get("sortField", "") not in valid_sort_fields:
+                raise ValueError(
+                    f"Invalid sortField: {sort_by.get('sortField')}. Must be one of {valid_sort_fields}."
+                )
+            if sort_by.get("sortOrder", "") not in ["ASCENDING", "DESCENDING"]:
+                raise ValueError(
+                    "Invalid sortOrder: Must be 'ASCENDING' or 'DESCENDING'."
+                )
+
+        if difficulty_filter:
+            # force each difficulty to uppercase
+            difficulty_filter["difficulties"] = [
+                diff.upper() for diff in difficulty_filter["difficulties"]
+            ]
+
+        # Default operators for filters
+        default_operator = {"operator": "IS"}
+
+        # Build the filters dynamically with proper operators
+        filters_v2 = {
+            "filterCombineType": filter_combine_type,
+            "statusFilter": {"questionStatuses": [], **default_operator},
+            "difficultyFilter": difficulty_filter
+            or {"difficulties": [], **default_operator},
+            "topicFilter": topic_filter or {"topicSlugs": [], **default_operator},
+            "frequencyFilter": frequency_filter
+            or {},  # No operator for frequencyFilter
+            # There are more filters available, but we're not using them in squidleet yet
+        }
+
+        query = """
+        query favoriteQuestionList(
+            $favoriteSlug: String!, $filtersV2: QuestionFilterInput,
+            $sortBy: QuestionSortByInput, $limit: Int, $skip: Int, $version: String = "v2"
+        ) {
+          favoriteQuestionList(
+            favoriteSlug: $favoriteSlug
+            filtersV2: $filtersV2
+            sortBy: $sortBy
+            limit: $limit
+            skip: $skip
+            version: $version
+          ) {
+            questions {
+              difficulty
+              id
+              paidOnly
+              questionFrontendId
+              status
+              title
+              titleSlug
+              translatedTitle
+              isInMyFavorites
+              frequency
+              acRate
+              topicTags {
+                name
+                nameTranslated
+                slug
+              }
+            }
+            totalLength
+            hasMore
+          }
+        }
+        """
+
+        payload = {
+            "query": query,
+            "variables": {
+                "skip": skip,
+                "limit": limit,
+                "favoriteSlug": favorite_slug,
+                "filtersV2": filters_v2,
+                "sortBy": sort_by
+                or {"sortField": "CUSTOM", "sortOrder": "ASCENDING"},  # Default sort
+            },
+            "operationName": "favoriteQuestionList",
+        }
+
+        response = self.session.post(self.url, json=payload)
+        if not response.ok:
+            raise Exception(f"❌ Failed to fetch company questions: {response.content}")
+
+        return response.json()
+
+    def get_company_names(self):
+        """
+        Fetches the list of company names and their corresponding slugs from the LeetCode API.
+
+        :return: A list of dictionaries containing company `name` and `slug`.
+        """
+        query = """
+        query problemsetCompanyTags {
+            problemsetCompanyTags {
+                name
+                slug
+            }
+        }
+        """
+
+        payload = {
+            "query": query,
+            "variables": {},
+            "operationName": "problemsetCompanyTags",
+        }
+
+        response = self.session.post(self.url, json=payload)
+
+        if not response.ok:
+            raise Exception(f"❌ Failed to fetch company names: {response.content}")
+
+        # Return company names and slugs
+        data = response.json()
+        return data.get("data", {}).get("problemsetCompanyTags", [])
+
+    def get_topic_tags(self):
+        """
+        Fetch the set of all topic tags available in LeetCode.
+
+        :return: set: A set of topic tag names.
+        """
+        query = """
+        query questionTopicTags {
+          questionTopicTags {
+            edges {
+              node {
+                id
+                name
+                slug
+                translatedName
+                questionIds
+              }
+            }
+          }
+        }
+        """
+        payload = {
+            "query": query,
+            "variables": {},
+            "operationName": "questionTopicTags",
+        }
+
+        response = self.session.post(self.url, json=payload)
+
+        if not response.ok:
+            raise Exception(f"❌ Failed to fetch topic tags: {response.content}")
+
+        # Extract relevant data from response
+        data = response.json()
+        edges = data.get("data", {}).get("questionTopicTags", {}).get("edges", [])
+        topic_tags = {edge["node"]["name"] for edge in edges if edge.get("node")}
+        return topic_tags

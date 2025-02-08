@@ -7,7 +7,7 @@ def parse():
     parser.add_argument(
         "--practice-mode",
         type=str,
-        choices=["custom", "random", "study-plan", "daily"],
+        choices=["custom", "random", "study-plan", "daily", "company"],
         help="Practice mode",
         default="random",
     )
@@ -28,6 +28,22 @@ def parse():
         type=str,
         help="Study plan slug (e.g., 'top-interview-150' or 'leetcode-75')",
         default="top-interview-150",
+    )
+    parser.add_argument(
+        "--company-name",
+        type=str,
+        help="Company name for company mode (e.g., 'amazon', 'google')",
+    )
+    parser.add_argument(
+        "--tags",
+        type=str,
+        help="Comma-separated tags to filter problems (e.g., 'array,string')",
+    )
+    parser.add_argument(
+        "--duration",
+        type=str,
+        help="Duration for company mode (e.g., 'thirty-days', 'three-months', 'six-months', 'more-than-six-months', 'all')",
+        default="all",
     )
     parser.add_argument(
         "--language", type=str, help="Programming language to use", default="python3"

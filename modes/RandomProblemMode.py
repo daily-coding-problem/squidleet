@@ -1,12 +1,32 @@
+import random
+from typing import Optional, List, Dict, Any
+
+from handlers.CacheHandler import cached_api
 from modes.PracticeMode import (
     PracticeMode,
-    get_random_problem,
     log_problem_details,
     open_in_browser,
     create_and_solve_handler,
 )
 from utils.constants import difficulty_map
 from utils.logger import log, LogLevel
+
+
+def get_random_problem(
+    difficulties: Optional[List[str]] = None,
+) -> Optional[Dict[str, Any]]:
+    """
+    Get a random problem from LeetCode.
+    :param difficulties: Difficulty levels of the problems (e.g., "Easy", "Medium", "Hard").
+    :return: A random problem dictionary or None if no problems are found.
+    """
+    problems = cached_api.fetch_problems(limit=1000, difficulties=difficulties)
+
+    if not problems:
+        return None
+
+    random_index = random.randint(0, len(problems) - 1)
+    return problems[random_index]
 
 
 class RandomProblemMode(PracticeMode):

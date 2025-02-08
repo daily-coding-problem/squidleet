@@ -15,6 +15,7 @@ Squidleet is a command-line LeetCode practice game that allows you to solve Leet
 - **Daily Challenge Integration**: Fetch and solve the LeetCode Daily Coding Challenge directly from the terminal.
 - **Study Plan Mode**: Fetch random problems based on a specific study plan.
 - **Random Problem Practice**: Get a randomly selected LeetCode problem to practice.
+- **Company Mode**: Fetch random problems asked by a specific company over a given duration (e.g., last 30 days).
 - **Specific Problem Mode**: Solve a specific problem by providing its problem slug.
 - **Problem Fetching**: Added enhanced fetching capabilities, including filtering based on difficulty (e.g., `easy`, `medium`, `hard`) and more.
 - **Submit Solutions**: Users can now directly submit their solutions to LeetCode from the terminal via a `submit_solution` function.
@@ -147,6 +148,36 @@ Selected 🎯 Study Plan Mode: top-interview-150
 🔗 URL: https://leetcode.com/problems/game-of-life
 🏷️ Tags: Array, Matrix, Simulation
 📈 Acceptance Rate: 70.65%
+...
+⏳ You have 45 min minutes to solve the problem. Good luck!
+```
+
+### Company Mode
+
+Company Mode allows you to fetch random problems asked by a specific company.
+
+⚠️ **Note**: This mode requires the `--leetcode-session` argument to be set with a valid LeetCode session cookie. This is because the company-specific problem data is not available publicly and requires a valid [LeetCode Premium](https://leetcode.com/subscribe) subscription.
+
+```bash
+python3 main.py --mode company --company-name microsoft --duration thirty-days
+```
+
+Optional arguments:
+- `--open-in-browser`: Opens the problem in a browser window.
+- `--editor`: Specify the preferred code editor (e.g., `vim`, `nano`). Default is the system-configured default editor.
+- `--difficulty`: Choose between `easy`, `medium`, or `hard` or select multiple using comma-separated list (e.g., `easy,medium`).
+- `--tags`: Filter problems based on tags. Example usage: `--tags Array,Hash Table`.
+- `--duration`: Fetch the problems asked by the company over a given span of time. Valid values: `thirty-days`, `three-months`, `six-months`, `more-than-six-months`, or `all`. Default is `all`.
+
+```text
+Welcome to 🦑 SquidLeet!
+🔐 Using authenticated session
+Selected 👔 Company Mode: Top Questions asked at Microsoft in the last 30 days
+🎯 Problem Selected: Maximum Length of a Concatenated String with Unique Characters
+✨ Difficulty: Medium
+🔗 URL: https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters
+🏷️ Tags: Array, String, Backtracking, Bit Manipulation
+📈 Acceptance Rate: 54.2%
 ...
 ⏳ You have 45 min minutes to solve the problem. Good luck!
 ```
