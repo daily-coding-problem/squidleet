@@ -1,4 +1,4 @@
-from modes.PracticeMode import PracticeMode
+from modes.PracticeMode import PracticeMode, log_problem_details, open_in_browser, create_and_solve_handler
 from utils.constants import difficulty_map
 from utils.logger import log, LogLevel
 from handlers.CacheHandler import cached_api
@@ -15,9 +15,9 @@ class CustomPracticeMode(PracticeMode):
                     continue
                 difficulty_label = difficulty_map[problem["difficulty"].lower()]
                 url = f"https://leetcode.com/problems/{problem['titleSlug']}"
-                self.log_problem_details(problem, difficulty_label, url)
-                self.open_in_browser(url, args["open_in_browser"])
-                self.create_and_solve_handler(
+                log_problem_details(problem, difficulty_label, url)
+                open_in_browser(url, args["open_in_browser"])
+                create_and_solve_handler(
                     slug, problem["codeSnippets"], difficulty_label, args
                 )
             except Exception as e:

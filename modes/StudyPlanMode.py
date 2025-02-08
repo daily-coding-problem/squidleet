@@ -13,9 +13,9 @@ class StudyPlanMode(PracticeMode):
                 return
             difficulty_label = difficulty_map[problem["difficulty"].lower()]
             url = f"https://leetcode.com/problems/{problem['titleSlug']}"
-            self.log_problem_details(problem, difficulty_label, url)
-            self.open_in_browser(url, args["open_in_browser"])
-            self.create_and_solve_handler(
+            log_problem_details(problem, difficulty_label, url)
+            open_in_browser(url, args["open_in_browser"])
+            create_and_solve_handler(
                 problem["titleSlug"], problem["codeSnippets"], difficulty_label, args
             )
         except Exception as e:
