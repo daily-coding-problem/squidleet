@@ -159,7 +159,7 @@ Company Mode allows you to fetch random problems asked by a specific company.
 ⚠️ **Note**: This mode requires the `--leetcode-session` argument to be set with a valid LeetCode session cookie. This is because the company-specific problem data is not available publicly and requires a valid [LeetCode Premium](https://leetcode.com/subscribe) subscription.
 
 ```bash
-python3 main.py --mode company --company-name microsoft --duration thirty-days
+python3 main.py --practice-mode company --company-name microsoft --duration thirty-days
 ```
 
 Optional arguments:
