@@ -1,4 +1,5 @@
 # 🦑 SquidLeet [![Format Check](https://github.com/daily-coding-problem/squidleet/actions/workflows/format-check.yml/badge.svg)](https://github.com/daily-coding-problem/squidleet/actions/workflows/format-check.yml)
+[![License: PolyForm Shield 1.0.0](https://img.shields.io/badge/License-PolyForm%20Shield%201.0.0-blue.svg)](https://polyformproject.org/licenses/shield/1.0.0/)
 
 ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white)
@@ -267,4 +268,4 @@ docker-compose up
 
 ## License
 
-Squidleet is open-sourced under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the [PolyForm Shield License 1.0.0](https://polyformproject.org/licenses/shield/1.0.0/) -- see [LICENSE](LICENSE) for details.
